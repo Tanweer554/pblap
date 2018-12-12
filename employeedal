@@ -1,0 +1,51 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Employee_collection
+{
+    class EmployeeDAL
+    {
+        ArrayList a = new ArrayList();
+        public bool AddEmployee(Employee e)
+        {
+            bool b = false;
+            int i = a.Add(e);
+
+           
+            if (i > 0)
+            {
+                b = true;
+            }
+            return b;
+            Console.WriteLine("Employee is added:{0}",b);
+
+        }
+        /*
+                    if (i < 0)
+                    {
+                        b=false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                    */
+
+        /* public bool DeleteEmployee(int id)
+         {
+
+         }
+         public string SearchEmployee(int id)
+         {
+
+         }
+         public Employee[] GetAllEmployeeList()
+         {
+
+         }*/
+    }
+}
