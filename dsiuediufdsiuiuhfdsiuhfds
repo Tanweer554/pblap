@@ -1,0 +1,39 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NonGenericCollections
+{
+    class EmpData
+    {
+        ArrayList obj = new ArrayList();
+
+        public void AddEmployee(Employee objEmp)
+        {
+            obj.Add(objEmp);
+        }
+
+        public void Display()
+        {
+            IEnumerator e=obj.GetEnumerator();
+            while (e.MoveNext())
+            {
+                Employee objEmp = e.Current as Employee;
+                Console.WriteLine(objEmp.EmployeeID);
+                Console.WriteLine(objEmp.EmployeeName);
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            EmpData objData = new EmpData();
+            objData.AddEmployee(new Employee() {EmployeeID=100,EmployeeName="Smith" });
+            objData.AddEmployee(new Employee() { EmployeeID = 101, EmployeeName = "John" });
+
+            objData.Display();
+        }
+    }
+}
