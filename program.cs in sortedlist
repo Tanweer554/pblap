@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Employeecollection_using_sortedlist
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            EmployeeDAL cemp = new EmployeeDAL();
+            Employee e = new Employee();
+            int option;
+            do
+            {
+                Console.WriteLine("Select an option:\n 1.Add Employee\n 2.Delete Employee\n 3.Search Employee\n 4.List Of Employees");
+                option = int.Parse(Console.ReadLine());
+
+                switch (option)
+                {
+                    case 1:
+                        Console.WriteLine("Enter the Employee id:");
+                        int i = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the Employee Name:");
+                        string j = Console.ReadLine();
+                        Console.WriteLine("Enter the Employee Salary:");
+                        double k = Convert.ToDouble(Console.ReadLine());
+                        cemp.AddEmployee(new Employee() { Employeeid = i, Employeename = j, salary = k });
+                        //  cemp.Display();
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter the Employee id:");
+                        int id = int.Parse(Console.ReadLine());
+                        cemp.DeleteEmployee(id);
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter the Employee id:");
+                        int sid = int.Parse(Console.ReadLine());
+                        cemp.SearchEmployee(sid);
+                        break;
+                    case 4:
+                        Employee[] employeelist = cemp.GetAllEmployeeList();
+
+                        for (int m = 0; m < employeelist.Length; m++)
+                        {
+                            Console.WriteLine("*************************************");
+                            Console.WriteLine("EmployeeID:{0}", employeelist[m].Employeeid);
+                            Console.WriteLine("EmployeeName:{0}", employeelist[m].Employeename);
+                            Console.WriteLine("*************************************");
+
+                        }
+                        break;
+                }
+            } while (option != 5);
+        }
+    }
+}
