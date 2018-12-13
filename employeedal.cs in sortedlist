@@ -1,0 +1,95 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Employeecollection_using_sortedlist
+{
+    class EmployeeDAL
+    {
+        bool b;
+        string str=string.Empty;
+        SortedList s = new SortedList();
+      
+        /* Adding the employee*/
+        public bool AddEmployee(Employee e)
+        {
+
+            s.Add(e.Employeeid,e);
+            if (s.Contains(e.Employeeid))
+            {
+                b = true;
+            }
+            else
+            {
+                b = false;
+            }
+            Console.WriteLine("Employee is added:{0}\n", b);
+            return b;
+
+
+        }
+        /* deleting the employee*/
+
+        public bool DeleteEmployee(int id)
+        {
+           foreach(DictionaryEntry d  in s)
+            {
+               
+                if (s.Contains(id))
+                {
+                    s.Remove(id);
+                    Console.WriteLine("Employee is deleted");
+                    return true;
+                  
+                }
+            }
+            return false;
+      
+        }
+        /* searching the employee*/
+        
+        public string SearchEmployee(int sid)
+        {
+            foreach (DictionaryEntry dic in s)
+            {
+                if (s.Contains(sid))
+                {
+                     Console.WriteLine("Employee is found");
+                    break;
+                }
+            }
+            return str;
+          
+        }
+
+        /* List of employees*/
+        public Employee[] GetAllEmployeeList()
+        {
+            Employee[] e = new Employee[s.Count];
+            int i = 0;
+            foreach (DictionaryEntry data in s)
+            {
+                e[i++] = data.Value as Employee;
+            }
+            return e;
+        }
+        public void Display()
+        {
+            IEnumerator e = s.GetEnumerator();
+            while (e.MoveNext())
+            {
+                Employee Emp = e.Current as Employee;
+                Console.WriteLine(" ");
+                Console.WriteLine("Employee ID:{0}", Emp.Employeeid);
+                Console.WriteLine("Employee Name:{0}", Emp.Employeename);
+                Console.WriteLine("Employee Salary:{0}", Emp.salary);
+            }
+        }
+
+
+    
+}
+}
