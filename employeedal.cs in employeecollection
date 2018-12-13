@@ -1,0 +1,99 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Employee_collection
+{
+    class EmployeeDAL
+    {
+        bool b;
+        ArrayList a = new ArrayList();
+                                                /* Adding the employee*/
+        public bool AddEmployee(Employee e)
+        {
+           
+            int i = a.Add(e);
+
+           
+            if (i < 0)
+            {
+                b = false;
+            }
+            else
+            {
+               b=true;
+            }
+            Console.WriteLine("Employee is added:{0}\n", b);
+            return b;
+
+
+        }
+                                                /* deleting the employee*/
+
+        string str = "";
+         public bool DeleteEmployee(int id)
+         {
+            bool IsDeleted = false;
+            for(int i = 0; i < a.Count; i++)
+            {
+                Employee e = a[i] as Employee;
+                 str = e.Employeename;
+                if (e.Employeeid == id)
+                {
+                    a.RemoveAt(i);
+                    IsDeleted = true;
+                }
+            }
+           
+            Console.WriteLine("Employee is delted:{0}",str);
+            return IsDeleted;
+         }
+                                            /* searching the employee*/
+        public string SearchEmployee(int id)
+         {
+            string str = String.Empty;
+
+            for (int i = 0; i < a.Count; i++)
+            {
+                Employee e = a[i] as Employee;
+                if (e.Employeeid == id)
+                {
+                    str = e.Employeename;
+                    Console.WriteLine("Employee {0} is found!!",str);
+                }
+
+              
+            }
+            return str;
+        }
+
+                                                        /* List of employees*/
+        public Employee[] GetAllEmployeeList()
+      {
+            Employee[] e = new Employee[a.Count];
+            int i = 0;
+            foreach(Employee data in a)
+            {
+                e[i++] = data;
+            }
+            return e;
+       }
+        public void Display()
+        {
+            IEnumerator e = a.GetEnumerator();
+            while (e.MoveNext())
+            {
+                Employee Emp = e.Current as Employee;
+                Console.WriteLine(" ");
+                Console.WriteLine("Employee ID:{0}",Emp.Employeeid);
+                Console.WriteLine("Employee Name:{0}", Emp.Employeename);
+                Console.WriteLine("Employee Salary:{0}", Emp.salary);
+            }
+        }
+
+   
+    }
+}
